@@ -12,7 +12,7 @@ Design and implement a scalable, production-ready AWS VPC following enterprise b
 - **CIDR Block:** `10.0.0.0/16`
 - **Tenancy:** Default
 
-![VPC Creation](file:///home/ashu/Downloads/notes-aws/task/pics/Screenshot_20260128_113501.png)
+![VPC Creation](pics/Screenshot_20260128_113501.png)
 
 ### Subnet Design (Unequal Sizes)
 We implemented 6 subnets with varying capacities, allocating the largest blocks first to optimize IP space.
@@ -26,8 +26,8 @@ We implemented 6 subnets with varying capacities, allocating the largest blocks 
 | **Edge** | Ingress / LB | `10.0.68.0/23` | 507 | Public |
 | **Admin** | Bastion / Ops | `10.0.70.0/24` | 251 | Public |
 
-![Subnet Analysis](file:///home/ashu/Downloads/notes-aws/task/pics/Screenshot_20260128_114337.png)
-![IP Capacity Validation](file:///home/ashu/Downloads/notes-aws/task/pics/Screenshot_20260128_114415.png)
+![Subnet Analysis](pics/Screenshot_20260128_114337.png)
+![IP Capacity Validation](pics/Screenshot_20260128_114415.png)
 
 ---
 
@@ -36,7 +36,7 @@ We implemented 6 subnets with varying capacities, allocating the largest blocks 
 ### Internet Gateway
 An Internet Gateway was created and attached to allow controlled internet access for public subnets.
 
-![IGW Attachment](file:///home/ashu/Downloads/notes-aws/task/pics/Screenshot_20260128_114720.png)
+![IGW Attachment](pics/Screenshot_20260128_114720.png)
 
 ### Route Table Architecture
 A structured routing policy ensures that internet access is intentional and secure.
@@ -46,8 +46,8 @@ A structured routing policy ensures that internet access is intentional and secu
 | **Public_RT** | Internet Gateway | `0.0.0.0/0` | Admin, Edge |
 | **Private-RT** | Local | `10.0.0.0/16` | Web, App, Platform, Shared |
 
-![Public Route Config](file:///home/ashu/Downloads/notes-aws/task/pics/Screenshot_20260128_115123.png)
-![Private Route Config](file:///home/ashu/Downloads/notes-aws/task/pics/Screenshot_20260128_115254.png)
+![Public Route Config](pics/Screenshot_20260128_115123.png)
+![Private Route Config](pics/Screenshot_20260128_115254.png)
 
 > [!IMPORTANT]
 > Private subnets have **no default route** to the internet, ensuring full isolation from external threats.
@@ -59,14 +59,14 @@ A structured routing policy ensures that internet access is intentional and secu
 ### 1. Subnet Associations
 The following screenshots show the explicit association of subnets with their respective route tables.
 
-![Public Associations](file:///home/ashu/Downloads/notes-aws/task/pics/Screenshot_20260128_115312.png)
-![Private Associations](file:///home/ashu/Downloads/notes-aws/task/pics/Screenshot_20260128_115352.png)
+![Public Associations](pics/Screenshot_20260128_115312.png)
+![Private Associations](pics/Screenshot_20260128_115352.png)
 
 ### 2. Verification Environment
 Instances were deployed in both Public and Private segments to verify routing behavior.
 
-![EC2 Verification Setup](file:///home/ashu/Downloads/notes-aws/task/pics/Screenshot_20260128_140814.png)
-![Bastion Instance Details](file:///home/ashu/Downloads/notes-aws/task/pics/Screenshot_20260128_140834.png)
+![EC2 Verification Setup](pics/Screenshot_20260128_140814.png)
+![Bastion Instance Details](pics/Screenshot_20260128_140834.png)
 
 ---
 
